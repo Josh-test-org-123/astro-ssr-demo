@@ -1,21 +1,21 @@
 {
-	"name": "my-astro-app",
-	"type": "module",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "astro dev",
-		"build": "astro build",
-		"preview": "astro build && wrangler pages dev",
-		"astro": "astro",
-		"deploy": "astro build && wrangler pages deploy",
-		"cf-typegen": "wrangler types"
-	},
-	"dependencies": {
-		"@astrojs/cloudflare": "^12.5.3",
-		"astro": "^5.8.1"
-	},
-	"devDependencies": {
-		"@types/node": "^22.15.29",
-		"wrangler": "^4.19.0"
-	}
+  "name": "astro-ssr-demo",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro build && wrangler pages dev",
+    "astro": "astro",
+    "deploy": "astro build && wrangler pages deploy",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.5.3",
+    "astro": "^5.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.29",
+    "wrangler": "^4.19.0"
+  }
 }
