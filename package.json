@@ -4,14 +4,13 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro build && wrangler pages dev",
+    "build": "astro build && cp src/_worker.js ./_worker.js",
+    "preview": "astro build && cp src/_worker.js ./_worker.js && npx wrangler dev",
     "astro": "astro",
-    "deploy": "astro build && wrangler pages deploy",
+    "deploy": "npm run build && npx wrangler deploy",
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.5.3",
     "astro": "^5.8.1"
   },
   "devDependencies": {
