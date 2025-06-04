@@ -7,7 +7,14 @@
   "name": "astro-ssr-demo",
   "compatibility_date": "2025-06-03",
   "compatibility_flags": ["nodejs_compat"],
-  "pages_build_output_dir": "./dist",
+  // main specifies the entry point of your Worker. For Astro projects using the Cloudflare adapter,
+  // this is typically located in the '_worker.js' subdirectory of your output directory.
+  "main": "./dist/_worker.js/index.js",
+  "assets": {
+    // 'directory' specifies the folder of static assets to upload.
+    // The '.assetsignore' file in this directory will be respected.
+    "directory": "./dist"
+  },
   "observability": {
     "enabled": true
   }
@@ -22,7 +29,19 @@
    * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
    * databases, object storage, AI inference, real-time communication and more.
    * https://developers.cloudflare.com/workers/runtime-apis/bindings/
+   *
+   * IMPORTANT: Only add bindings if your code explicitly uses them (e.g., env.MY_KV_NAMESPACE)
+   * AND the build fails due to missing bindings. Framework informational messages (like Astro's
+   * session message for KV) do NOT automatically require adding bindings here.
    */
+  // Example KV binding (only add if code explicitly uses it and build fails):
+  // "kv_namespaces": [
+  //   {
+  //     "binding": "SESSION", // This is the name your Worker will use to access the KV namespace
+  //     "id": "",             // TODO: Replace with your actual KV namespace ID for production
+  //     "preview_id": ""      // TODO: Replace with your actual KV namespace ID for preview
+  //   }
+  // ],
 
   /**
    * Environment Variables
@@ -33,12 +52,6 @@
    * Note: Use secrets to store sensitive data.
    * https://developers.cloudflare.com/workers/configuration/secrets/
    */
-
-  /**
-   * Static Assets
-   * https://developers.cloudflare.com/workers/static-assets/binding/
-   */
-  // "assets": { "directory": "./public/", "binding": "ASSETS" },
 
   /**
    * Service Bindings (communicate between multiple Workers)
